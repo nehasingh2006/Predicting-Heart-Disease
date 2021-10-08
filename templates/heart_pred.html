@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Heart Disease Prediction</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+  <div class="row justify-content-center mt-4">
+  <div class="col-sm-12 col-lg-10 header-section">
+    <h4 class="mt-2 header-text text-center"><u>Heart Disease Prediction</u></h4>
+  <form  action='/predict' method="POST" class="box">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="fname">Age:</label>
+        <input type="number" class="form-control" name="age" aria-describedby="Pregnancies" placeholder="Enter Age">
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="fname">Chest Pain</label>
+        <input type="number" class="form-control" name="cp" aria-describedby="" placeholder="0-No pain 1-moderate 2-more 3-extreme">
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="fname">Blood Pressure</label>
+        <input type="number" class="form-control" step="0.01" name="trestbps" aria-describedby="" placeholder="Blood pressure in mm/Hg">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-lg-2">
+      <div class="form-group">
+       <label for="fname">Fasting Blood Sugar:</label>
+       <div class="form-check">
+         <label class="form-check-label">
+           <input type="radio" value=1 class="form-check-input" name="fbs">Yes
+       </label>
+         <label class="form-check-label form-check-inline">
+           <input type="radio" value=0 class="form-check-input" name="fbs">No
+         </label>
+       </div>
+      </div>
+     </div>
+     <div class="col-sm-12 col-lg-2">
+      <div class="form-group">
+       <label for="fname">Gender:</label>
+       <div class="form-check">
+         <label class="form-check-label">
+           <input type="radio" value=1 class="form-check-input" name="sex">Male
+       </label>
+         <label class="form-check-label form-check-inline">
+           <input type="radio" value=0 class="form-check-input" name="sex">Female
+         </label>
+       </div>
+      </div>
+     </div>
+     <div class="col-sm-12 col-lg-4">
+      <div class="form-group">
+       <label for="fname">Resting Electrocardiographic</label>
+       <div class="form-check">
+         <label class="form-check-label">
+           <input type="radio" value=1 class="form-check-input" name="restecg">Yes
+       </label>
+         <label class="form-check-label form-check-inline">
+           <input type="radio" value=0 class="form-check-input" name="restecg">No
+         </label>
+       </div>
+      </div>
+     </div>
+     <div class="col">
+      <div class="form-group">
+        <label for="fname">Exercise Induced Angina</label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" value=1 class="form-check-input" name="exang">Yes
+        </label>
+          <label class="form-check-label form-check-inline">
+            <input type="radio" value=0 class="form-check-input" name="exang">No
+          </label>
+        </div>
+       </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="fname">Coronary Artery</label>
+        <input type="number" class="form-control" name="ca" aria-describedby="" placeholder="0-3">
+        <small>Number of major vessels (0-3) colored by flourosopy</small>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="fname">Thalassemia</label>
+        <input type="number" class="form-control" name="thal" aria-describedby="" placeholder="3,6,7">
+        <small>3 = normal; 6 = fixed defect; 7 = reversable defect</small>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="fname">Cholestrol</label>
+        <input type="number" class="form-control" step="0.01" name="chol" aria-describedby="" placeholder="Serum cholestoral in mg/dl">
+      </div>
+    </div>
+  </div>
+
+
+<div class="row">
+ <div class="col">
+    <div class="form-group">
+      <label for="fname">Oldpeak</label>
+      <input type="number" class="form-control" step="0.01" name="oldpeak" aria-describedby="" placeholder="1 = upsloping; 2 = flat; 3 = downsloping">
+      <small>ST depression induced by exercise relative to rest</small>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label for="fname">Thalach</label>
+      <input type="number" class="form-control" name="thalach" aria-describedby="" placeholder="Enter maximum heart rate">
+    </div>
+   </div>
+   <div class="col">
+    <div class="form-group">
+      <label for="fname">Slope</label>
+      <input type="number" class="form-control" name="slope" aria-describedby="" placeholder="0-2">
+      <small>The slope of the peak exercise ST segment</small>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <button type="submit" class="raise">Check</button>
+</div>
+</form>
+<h4 class="text-white mt-3 text-uppercase text-center font-weight-bold">{{pred}}</h4>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src=".js/materialize.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>
